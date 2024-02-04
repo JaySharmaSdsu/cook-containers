@@ -1,21 +1,23 @@
-import yaml
+import logging
 import os
+
+from ruamel.yaml import YAML
 
 class ReadConfigurations():
 
     @classmethod
-    def read_configurations(self, path, file_name):
-        _configurations_file = os.path.join(path, file_name)
-        
+    def read_configurations(cls, file_name):
+        yaml = YAML()
+        yaml.preserve_quotes = True        
         try: 
-            with open(_configurations_file, 'r') as _file:
-                configurations=yaml.safe_load(config_file)
+            with open(file_name, 'r') as _file:
+                configurations=yaml.load(_file)
             
             return configurations
         except yaml.YAMLError as exc:
-            print(f"Error reading YAML file: {exc}")
+            logging.error(f"Error reading YAML file: {exc}")
         except FileNotFoundError:
-            print("File not found.")
+            logging.error("File not found.")
         except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+            logging.error(f"An unexpected error occurred: {e}")
             
