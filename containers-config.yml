@@ -1,0 +1,51 @@
+containers:
+  - name: app1
+    dockerfile:
+      path: Dockerfile1
+      base_images: 
+      - ubuntu:latest
+      - python
+      run:
+        - apt-get update && apt-get install -y some-package
+        - echo "test 1" 
+      env:
+        - key1: value1
+      volumes:
+        - /bere/sdfs
+      ports:
+        - "8080:80"
+        
+  - name: app2
+    dockerfile:
+      path: Dockerfile2
+      base_images: 
+      - ubuntu:latest
+      - python
+      run:
+        - apt-get update && apt-get install -y some-package
+        - echo "test 2" 
+      env:
+        - key1: value1
+      volumes:
+        - /bere/sdfs
+      ports:
+        - "8080:80"
+
+  - name: app3
+    dockerfile:
+      path: Dockerfile3
+      base_images: 
+      - ubuntu:latest
+      - python
+      run:
+        - apt-get update && apt-get install -y some-package
+        - echo "test 2" 
+      env:
+        - key1: value1
+      volumes:
+        - /bere/sdfs
+      ports:
+        - "8080:80"
+       
+       
+ 
